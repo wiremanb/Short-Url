@@ -41,6 +41,7 @@ class ShortcodesController < ApplicationController
         @shortcode.get_short_url
         @shortcode.popularity = 1
         if(@shortcode.save)
+            UpdateTitleJob.perform_later @shortcode.id
             render json: @shortcode
         else
             render json: {errors: @shortcode.errors.full_messages}
