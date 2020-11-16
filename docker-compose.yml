@@ -10,12 +10,12 @@ services:
     ports:
     - "3000:3000"
     depends_on:
-    - postgresql
-    networks:
-    - app
+    - postgres
     working_dir: /app
     volumes:
     - .:/app
+    networks:
+    - app
 
   worker:
     image: short-url-app
@@ -25,26 +25,25 @@ services:
     volumes:
     - .:/app:cached
     depends_on:
-    - postgresql
+    - postgres
     networks:
     - app
 
-  postgresql:
+  postgres:
     image: postgres
     container_name: short_url_postgres_dev
     volumes:
-    - data-mysql:/var/lib/mysql
-    - ./mysql:/docker-entrypoint-initdb.d:ro
+    - data-postgres:/var/lib/postgresql/data
     environment:
-    - MYSQL_ROOT_PASSWORD=password
-    - MYSQL_DATABASE=short_development
+    - POSTGRES_PASSWORD=password
+    - POSTGRES_USER=root
+    ports:
+    - 5432:5432/tcp
     networks:
     - app
-    ports:
-    - 3307:3306
 
 volumes:
-  data-mysql:
+  data-postgres:
     driver: local
 
 networks:
