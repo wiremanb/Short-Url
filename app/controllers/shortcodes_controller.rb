@@ -1,4 +1,6 @@
 class ShortcodesController < ApplicationController
+    protect_from_forgery with: :null_session
+
     def index
         @shortcodes = Shortcode.all.order('popularity DESC')
         render json: @shortcodes
@@ -27,7 +29,6 @@ class ShortcodesController < ApplicationController
 
     def new
         @shortcode = Shortcode.new
-        render error: {message: @shortcode.errors.full_messages.each}, status: 400
     end
 
     def create
@@ -37,12 +38,12 @@ class ShortcodesController < ApplicationController
         if(@shortcode.save)
             render json: @shortcode
         else
-            render 'new'
+            render json: {message: @shortcode.errors.full_messages.each, status: 400}, status: 400
         end
     end
 
     private def shortcode_params
-        params.require(:shortcode).permit(:original_url)
+        params.permit(:original_url)
     end
 
 end

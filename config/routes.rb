@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   get '/top100', to: 'shortcodes#top100', as: 'top100'
   get '/:short_url', to: 'shortcodes#goto', as: 'goto'
+  post '/shortcodes/:original_url', to: 'shortcodes#create', as: 'original_url'
 end
