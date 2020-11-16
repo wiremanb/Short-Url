@@ -33,7 +33,7 @@ class ShortcodesController < ApplicationController
 
     def create
         @shortcode = Shortcode.new(shortcode_params)
-        @shortcode.short_url
+        @shortcode.get_short_url
         @shortcode.popularity = 1
         if(@shortcode.save)
             render json: @shortcode
