@@ -1,6 +1,9 @@
-# README
+# Short-url-app
+RoR application that runs in docker. Exposes an API that provides a url shortening service. Data is stored in a postgres db. 
 
 ### Build instructions
+1. docker-compose build
+2. docker-compose run short-app rails db:setup && rails db:migrate
 
 ### API Spec
 #### Reference:
@@ -10,7 +13,7 @@
 | GET /:short_url | Redirect to original url |
 | GET /top100 | List top 100 most popular urls |
 
-### Curl Examples
+#### Curl Examples
 * curl -XPOST -d "original_url=https://google.com" http://localhost:3000/shortcodes
 * curl -XGET http://localhost:3000/:short_url
 * curl -XGET http://localhost:3000/top100
