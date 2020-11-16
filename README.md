@@ -2,8 +2,10 @@
 RoR application that runs in docker. Exposes an API that provides a url shortening service. Data is stored in a postgres db. 
 
 ### Build instructions
-1. docker-compose build
-2. docker-compose run short-app rails db:setup && rails db:migrate
+1. Build image: `docker-compose build`
+2. Setup DB: `docker-compose run short-url-app rails db:setup`
+3. Migrate DB: `docker-compose run short-url-app rails db:migrate`
+4. Run webserver: `docker-compose up`
 
 ### API Spec
 #### Reference:
