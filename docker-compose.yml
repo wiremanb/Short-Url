@@ -17,18 +17,6 @@ services:
     networks:
     - app
 
-  worker:
-    image: short-url-app
-    command: bundle exec rake resque:work
-    env_file: ./dev.env
-    working_dir: /app
-    volumes:
-    - .:/app:cached
-    depends_on:
-    - postgres
-    networks:
-    - app
-
   postgres:
     image: postgres
     container_name: short_url_postgres_dev
@@ -36,7 +24,7 @@ services:
     - data-postgres:/var/lib/postgresql/data
     environment:
     - POSTGRES_PASSWORD=password
-    - POSTGRES_USER=root
+    - POSTGRES_USER=postgres
     ports:
     - 5432:5432/tcp
     networks:

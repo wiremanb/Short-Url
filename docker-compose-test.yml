@@ -16,7 +16,7 @@ services:
     container_name: short_app_postgres_rspec_test
     environment:
     - POSTGRES_PASSWORD=password
-    - POSTGRES_USER=root
+    - POSTGRES_USER=postgres
     ports:
     - 5432:5432/tcp
     volumes:
