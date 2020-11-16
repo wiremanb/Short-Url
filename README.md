@@ -7,6 +7,11 @@ RoR application that runs in docker. Exposes an API that provides a url shorteni
 3. Migrate DB: `docker-compose run short-url-app rails db:migrate`
 4. Run webserver: `docker-compose up`
 
+### RSpec Instructions
+1. Setup test DB: `docker-compose -f docker-compose-test.yml run short-url-app-rspec rails db:setup`
+2. Migrate test DB: `docker-compose -f docker-compose-test.yml run short-url-app-rspec rails db:migrate`
+3. Run test spec: `docker-compose -f docker-compose-test.yml run short-url-app-rspec`
+
 ### API Spec
 #### Reference:
 | Endpoint     | Functionality | 
