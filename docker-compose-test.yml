@@ -1,0 +1,27 @@
+version: '3'
+services:
+  short-url-app-rspec:
+    build: .
+    image: short-url-app
+    env_file: ./test.env
+    working_dir: /app
+    command: rspec
+    volumes:
+      - .:/app:cached
+    depends_on:
+    - postgres
+
+  postgres:
+    image: postgres
+    container_name: short_app_postgres_rspec_test
+    environment:
+    - POSTGRES_PASSWORD=password
+    - POSTGRES_USER=root
+    ports:
+    - 5432:5432/tcp
+    volumes:
+    - postgres-test:/var/lib/postgresql/data
+
+volumes:
+  postgres-test:
+    driver: local
