@@ -17,13 +17,18 @@ class ShortcodesController < ApplicationController
     end
 
     def goto
-        @shortcode = Shortcode.find_by!(short_url: params[:short_url])
-        @shortcode.increment!(:popularity,1)
-        if(@shortcode.save)
-        # render plain: params[:short_url]
-            redirect_to @shortcode.original_url
+        @shortcode = Shortcode.find_by(short_url: params[:short_url])
+        if(@shortcode != nil)
+            @shortcode.increment!(:popularity,1)
+            if(@shortcode.save)
+            # render plain: params[:short_url]
+                redirect_to @shortcode.original_url
+            else
+                render json: {errors: @shortcode.errors.full_messages}, status: 404
+            end
         else
-            render 'new'
+            @shortcode = Shortcode.new
+            render json: {errors: @shortcode.errors.full_messages}, status: 404
         end
     end
 
@@ -38,7 +43,7 @@ class ShortcodesController < ApplicationController
         if(@shortcode.save)
             render json: @shortcode
         else
-            render json: {message: @shortcode.errors.full_messages.each, status: 400}, status: 400
+            render json: {errors: @shortcode.errors.full_messages}
         end
     end
 
