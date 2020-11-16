@@ -11,7 +11,7 @@ services:
     depends_on:
     - postgres
 
-  postgres:
+  postgres_rspec:
     image: postgres
     container_name: short_app_postgres_rspec_test
     environment:
