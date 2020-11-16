@@ -15,6 +15,7 @@ development:
 test:
   <<: *default
   database: Short_Url_development_test
+  host: short_app_postgres_rspec_test
 
 production:
   <<: *default
