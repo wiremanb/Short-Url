@@ -3,7 +3,12 @@
 ### Build instructions
 
 ### API Spec
-
+#### Reference:
+| Endpoint     | Functionality | 
+|:-------------|:-------------:|
+| POST /shortcodes | Add URL to entry and generate shortcode |
+| GET /:short_url | Redirect to original url |
+| GET /top100 | List top 100 most popular urls |
 
 ### Curl Examples
 * curl -XPOST -d "original_url=https://google.com" http://localhost:3000/shortcodes
