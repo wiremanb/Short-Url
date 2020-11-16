@@ -1,6 +1,6 @@
 class ShortcodesController < ApplicationController
     def index
-        @shortcodes = Shortcode.all
+        @shortcodes = Shortcode.all.order('popularity DESC')
     end
 
     def show
@@ -9,8 +9,13 @@ class ShortcodesController < ApplicationController
 
     def goto
         @shortcode = Shortcode.find_by!(short_url: params[:short_url])
+        @shortcode.increment!(:popularity,1)
+        if(@shortcode.save)
         # render plain: params[:short_url]
-        redirect_to @shortcode.original_url
+            redirect_to @shortcode.original_url
+        else
+            render 'goto'
+        end
     end
 
     def new
@@ -20,6 +25,7 @@ class ShortcodesController < ApplicationController
     def create
         @shortcode = Shortcode.new(shortcode_params)
         @shortcode.short_url
+        @shortcode.popularity = 1
         if(@shortcode.save)
             redirect_to @shortcode
         else

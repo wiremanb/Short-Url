@@ -3,7 +3,7 @@
 <% @shortcodes.each do |shortcode| %>
     <div class="card card-body bg-light">
         <p>Original: <%= shortcode.original_url %></p>
-        <p>Shortcode: <%= shortcode.short_url %></p>
+        <p>Shortcode: <%= link_to shortcode.short_url, goto_path(shortcode.short_url) %></p>
         <p>Popularity: <%= shortcode.popularity %></p>
     </div><br>
 <% end %>

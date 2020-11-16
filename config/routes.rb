@@ -5,5 +5,5 @@ Rails.application.routes.draw do
 
   resources :shortcodes
 
-  get '/:short_url', to: 'shortcodes#goto'
+  get '/:short_url', to: 'shortcodes#goto', as: 'goto'
 end
