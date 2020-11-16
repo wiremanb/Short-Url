@@ -9,7 +9,7 @@ services:
     volumes:
       - .:/app:cached
     depends_on:
-    - postgres
+    - postgres_rspec
 
   postgres_rspec:
     image: postgres
