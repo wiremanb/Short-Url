@@ -1,0 +1,15 @@
+<h1>New shortcode</h1>
+<%= form_for :shortcode, url: shortcodes_path do |f| %>
+    <% if @shortcode.errors.any? %>
+        <% @shortcode.errors.full_messages.each do |msg| %>
+            <div class="alert alert-danger"><%= msg %></div>
+        <% end %>
+    <% end %>
+    <p>
+        <%= f.label :original_url %><br>
+        <%= f.text_field(:original_url, {:class => 'form-control'}) %>
+    </p>
+    <p>
+        <%= f.submit({:class => 'btn btn-primary'}) %>
+    </p>
+<% end %>
