@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_005940) do
     t.string "original_url"
     t.string "short_url"
     t.integer "popularity"
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

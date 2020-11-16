@@ -4,7 +4,7 @@ class CreateShortcodes < ActiveRecord::Migration[6.0]
       t.string :original_url
       t.string :short_url
       t.integer :popularity
-
+      t.string :title
       t.timestamps
     end
   end
